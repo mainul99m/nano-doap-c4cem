@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:nano_doap_c4cem/controllers/home_screen_controller.dart';
 import 'package:nano_doap_c4cem/utils/app_colors.dart';
 import 'package:nano_doap_c4cem/views/components/custom_appbar.dart';
@@ -15,7 +16,33 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar(
-          title: 'NANO-DOAP C4CEM'.tr,
+        title: 'NANO-DOAP C4CEM'.tr,
+        actions: [
+          Visibility(
+              visible: controller.isSyncing.value,
+              child: Row(
+                children: [
+                  Lottie.asset(
+                      'assets/lottie/syncing.json',
+                      height: 40
+                  ),
+                  SizedBox(width: 16,)
+                ],
+              ),
+          ),
+          Obx(()=>Visibility(
+            visible: !controller.isLocationServiceEnabled.value,
+            child: Row(
+              children: [
+                Icon(
+                  Icons.location_disabled,
+                  color: Colors.redAccent,
+                ),
+                SizedBox(width: 16,)
+              ],
+            ),
+          ))
+        ],
       ),
       backgroundColor: AppColors.backgroundColor,
       drawer: Drawer(
