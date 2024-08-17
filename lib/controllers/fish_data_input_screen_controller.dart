@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:nano_doap_c4cem/views/fish_list_screen.dart';
+import 'package:nano_doap_c4cem/views/select_fish_list_screen.dart';
 
 class FishDataInputScreenController extends GetxController {
 
@@ -34,7 +34,7 @@ class FishDataInputScreenController extends GetxController {
 
   void selectFishTFPressed() async{
     print('SelectFish Tapped');
-    String? res = await Get.to(()=> FishListScreen());
+    String? res = await Get.to(()=> SelectFishListScreen());
     print(res);
     if(res != null){
       selectedFish.value = res;

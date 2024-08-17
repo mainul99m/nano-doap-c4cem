@@ -6,9 +6,9 @@ import 'package:nano_doap_c4cem/views/stylesheets/text_stylesheets.dart';
 import 'package:get/get.dart';
 import '../controllers/fish_list_controller.dart';
 
-class FishListScreen extends StatelessWidget {
+class SelectFishListScreen extends StatelessWidget {
   final FishListController controller = Get.put(FishListController());
-  FishListScreen({super.key});
+  SelectFishListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
