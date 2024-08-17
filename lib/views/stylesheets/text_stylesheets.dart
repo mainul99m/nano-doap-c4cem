@@ -17,8 +17,8 @@ class TextStyleSheets {
       );
 
   static TextStyle get button => GoogleFonts.nunitoSans(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
       );
   static TextStyle get list => GoogleFonts.nunitoSans(
         fontSize: 16,

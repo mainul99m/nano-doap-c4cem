@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nano_doap_c4cem/utils/app_colors.dart';
+import 'package:nano_doap_c4cem/views/components/app_button.dart';
 import 'package:nano_doap_c4cem/views/components/custom_appbar.dart';
 import 'package:nano_doap_c4cem/views/stylesheets/text_stylesheets.dart';
 import 'package:get/get.dart';
@@ -53,6 +54,19 @@ class FishListScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              // add fish button
+              Obx(()=>Visibility(
+                visible: controller.searchString.value.length > 3,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 16,),
+                    AppButton(
+                      title: 'Add fish',
+                      onPressed: controller.addFishClicked,
+                    ),
+                  ],
+                ),
+              )),
               Obx(()=>ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),

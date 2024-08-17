@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nano_doap_c4cem/controllers/fish_data_input_screen_controller.dart';
 import 'package:nano_doap_c4cem/utils/app_colors.dart';
+import 'package:nano_doap_c4cem/views/components/app_button.dart';
 import 'package:nano_doap_c4cem/views/components/app_text_field.dart';
 import 'package:nano_doap_c4cem/views/components/custom_appbar.dart';
 import 'package:get/get.dart';
 import 'package:nano_doap_c4cem/views/components/fish_name_selector.dart';
+import 'package:nano_doap_c4cem/views/stylesheets/text_stylesheets.dart';
 
 class FishDataInputScreen extends StatelessWidget {
   final FishDataInputScreenController controller = Get.put(FishDataInputScreenController());
@@ -47,6 +49,11 @@ class FishDataInputScreen extends StatelessWidget {
                 hintText: 'Enter fishing time',
                 keyboardType: TextInputType.number,
               ),
+              const SizedBox(height: 16,),
+              AppButton(
+                title: 'Submit',
+                onPressed: (){},
+              )
             ],
           ),
         )
