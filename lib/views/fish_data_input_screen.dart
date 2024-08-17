@@ -22,7 +22,10 @@ class FishDataInputScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              FishNameSelector(),
+              Obx(()=>FishNameSelector(
+                selectedFish: controller.selectedFish.value == "" ? null : controller.selectedFish.value,
+                onTap: controller.selectFishTFPressed,
+              )),
               const SizedBox(height: 16,),
               AppTextField(
                 leadingIcon: 'assets/icons/ic_scale.png',
