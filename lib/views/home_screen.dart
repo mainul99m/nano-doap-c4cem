@@ -80,11 +80,15 @@ class HomeScreen extends StatelessWidget {
             children: [
              Obx(()=>Visibility(
                visible: !controller.isLocationServiceEnabled.value,
-               child:const WarningWidget(
-                   text: 'This app can not work with location services disabled. Please enable location services to continue.'
+               child: Column(
+                 children: [
+                   WarningWidget(
+                       text: 'This app can not work with location services disabled. Please enable location services to continue.'.tr
+                   ),
+                   const SizedBox(height: 20,),
+                 ],
                )
              )),
-              const SizedBox(height: 20,),
               SectionHeader(title: 'Provide information related to ocean'.tr),
               const SizedBox(height: 20,),
               /// Information Related to Ocean and Environment
@@ -94,12 +98,12 @@ class HomeScreen extends StatelessWidget {
                   MenuIconButton(
                     title: 'Information related to fish'.tr,
                     iconPath: 'assets/icons/ic_fish.png',
-                    onTap: () {},
+                    onTap: controller.fishInformationBtnClicked,
                   ),
                   MenuIconButton(
                     title: 'Information related to environment'.tr,
                     iconPath: 'assets/icons/ic_temperature.png',
-                    onTap: () {},
+                    onTap: controller.environmentBtnClicked,
                   ),
                 ],
               ),
@@ -111,12 +115,12 @@ class HomeScreen extends StatelessWidget {
                   MenuIconButton(
                     title: 'Information related to plankton'.tr,
                     iconPath: 'assets/icons/ic_plankton.png',
-                    onTap: () {},
+                    onTap: controller.planktonBtnClicked,
                   ),
                   MenuIconButton(
                     title: 'Information related to plastic'.tr,
                     iconPath: 'assets/icons/ic_water-pollution.png',
-                    onTap: () {},
+                    onTap: controller.plasticBtnClicked,
                   ),
                 ],
               ),
@@ -128,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                   MenuIconButton(
                     title: 'Information related to resource'.tr,
                     iconPath: 'assets/icons/ic_resource.png',
-                    onTap: () {},
+                    onTap: controller.resourcesBtnClicked,
                   ),
                 ],
               ),
@@ -141,12 +145,12 @@ class HomeScreen extends StatelessWidget {
                   MenuIconButton(
                     title: 'Weather map'.tr,
                     iconPath: 'assets/icons/ic_weather.png',
-                    onTap: () {},
+                    onTap: controller.weatherBtnClicked,
                   ),
                   MenuIconButton(
                     title: 'Sea state map'.tr,
                     iconPath: 'assets/icons/ic_map.png',
-                    onTap: () {},
+                    onTap: controller.seaStateBtnClicked,
                   ),
                 ],
               ),
