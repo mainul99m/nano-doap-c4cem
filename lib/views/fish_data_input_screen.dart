@@ -7,6 +7,7 @@ import 'package:nano_doap_c4cem/views/components/app_text_field.dart';
 import 'package:nano_doap_c4cem/views/components/custom_appbar.dart';
 import 'package:get/get.dart';
 import 'package:nano_doap_c4cem/views/components/fish_name_selector.dart';
+import 'package:nano_doap_c4cem/views/components/image_capture_widget.dart';
 import 'package:nano_doap_c4cem/views/stylesheets/text_stylesheets.dart';
 
 class FishDataInputScreen extends StatelessWidget {
@@ -57,23 +58,10 @@ class FishDataInputScreen extends StatelessWidget {
           style: TextStyleSheets.subtitle,
         ),
         const SizedBox(height: 16),
-        InkWell(
-          onTap: controller.cameraButtonPressed,
-          child: Container(
-            decoration: BoxDecoration(
-                color: AppColors.secondaryBrightColor,
-                borderRadius: BorderRadius.circular(8),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Image.asset(
-                'assets/icons/ic_camera.png',
-                width: 100,
-                height: 110,
-              ),
-            ),
-          ),
-        ),
+        Obx(()=>ImageCaptureWidget(
+          imagePath: controller.imagePath.value,
+          onCameraButtonPressed: controller.cameraButtonPressed
+        )),
       ],
     );
   }
@@ -113,10 +101,10 @@ class FishDataInputScreen extends StatelessWidget {
                 controller: controller.fishingTimeController,
               ),
               const SizedBox(height: 16,),
-              AppButton(
+              Obx(()=>AppButton(
                 title: 'Submit',
-                onPressed: (){},
-              )
+                onPressed: controller.imagePath.isNotEmpty?(){}:null,
+              ))
             ],
           ),
         )
