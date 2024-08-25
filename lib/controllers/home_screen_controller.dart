@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nano_doap_c4cem/services/location_services.dart';
 import 'package:nano_doap_c4cem/views/environment_data_input_screen.dart';
 import 'package:nano_doap_c4cem/views/fish_data_input_screen.dart';
+import 'package:nano_doap_c4cem/views/plastic_data_input_screen.dart';
 
 import '../views/plankton_data_input_screen.dart';
 
@@ -37,7 +38,7 @@ class HomeScreenController extends GetxController {
     Get.to(()=> PlanktonDataInputScreen());
   }
   void plasticBtnClicked() {
-
+    Get.to(()=> PlasticDataInputScreen());
   }
   void resourcesBtnClicked() {
 
