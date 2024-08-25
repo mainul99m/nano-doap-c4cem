@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:nano_doap_c4cem/controllers/fish_data_input_screen_controller.dart';
 import 'package:nano_doap_c4cem/utils/app_colors.dart';
@@ -19,7 +20,66 @@ class FishDataInputScreen extends StatelessWidget {
         title: 'Fish Data Input'
       ),
       backgroundColor: AppColors.backgroundColor,
-      body: SingleChildScrollView(
+      body: Stack(
+        children: [
+          PageView(
+            onPageChanged: controller.currentPageIndex,
+            children: [
+              _photo_input_section(),
+              _data_input_section()
+            ],
+          ),
+          Positioned(
+            bottom: 30,
+            left: 0,
+            right: 0,
+            child: Obx(()=>DotsIndicator(
+              dotsCount: 2,
+              position: controller.currentPageIndex.value,
+              decorator: DotsDecorator(
+                color: AppColors.secondaryColor,
+                activeColor: AppColors.primaryColor
+              ),
+            )),
+          )
+        ],
+      )
+    );
+  }
+
+  Widget _photo_input_section(){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          'Take a photo of the fish',
+          style: TextStyleSheets.subtitle,
+        ),
+        const SizedBox(height: 16),
+        InkWell(
+          onTap: controller.cameraButtonPressed,
+          child: Container(
+            decoration: BoxDecoration(
+                color: AppColors.secondaryBrightColor,
+                borderRadius: BorderRadius.circular(8),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Image.asset(
+                'assets/icons/ic_camera.png',
+                width: 100,
+                height: 110,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _data_input_section(){
+    return SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -58,7 +118,6 @@ class FishDataInputScreen extends StatelessWidget {
           ),
         )
 
-      ),
     );
   }
 }
