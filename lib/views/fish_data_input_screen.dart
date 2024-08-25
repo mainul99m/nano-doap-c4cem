@@ -94,6 +94,7 @@ class FishDataInputScreen extends StatelessWidget {
                 labelText: 'Weight (Kg)',
                 hintText: 'Enter weight',
                 keyboardType: TextInputType.number,
+                controller: controller.weightController,
               ),
               const SizedBox(height: 16,),
               AppTextField(
@@ -101,6 +102,7 @@ class FishDataInputScreen extends StatelessWidget {
                 labelText: 'Length (inch)',
                 hintText: 'Enter length',
                 keyboardType: TextInputType.number,
+                controller: controller.lengthController,
               ),
               const SizedBox(height: 16,),
               AppTextField(
@@ -108,6 +110,7 @@ class FishDataInputScreen extends StatelessWidget {
                 labelText: 'Fishing Time',
                 hintText: 'Enter fishing time',
                 keyboardType: TextInputType.number,
+                controller: controller.fishingTimeController,
               ),
               const SizedBox(height: 16,),
               AppButton(
