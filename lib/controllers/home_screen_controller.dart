@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:nano_doap_c4cem/services/location_services.dart';
+import 'package:nano_doap_c4cem/views/environment_data_input_screen.dart';
 import 'package:nano_doap_c4cem/views/fish_data_input_screen.dart';
 
 class HomeScreenController extends GetxController {
@@ -28,7 +29,7 @@ class HomeScreenController extends GetxController {
     Get.to(()=> FishDataInputScreen());
   }
   void environmentBtnClicked() {
-
+    Get.to(()=> EnvironmentDataInputScreen());
   }
   void planktonBtnClicked() {
 
