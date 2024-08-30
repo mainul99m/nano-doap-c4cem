@@ -50,6 +50,7 @@ class HomeScreen extends StatelessWidget {
         child: Stack(
           children: [
             SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
                   ListTile(
@@ -60,6 +61,10 @@ class HomeScreen extends StatelessWidget {
                     title: const  Text('Item 2'),
                     onTap: () {},
                   ),
+                  ListTile(
+                    title: const Text('Logout'),
+                    onTap: () {},
+                  )
                 ],
               ),
             ),

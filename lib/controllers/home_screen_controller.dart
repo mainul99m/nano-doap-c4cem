@@ -30,6 +30,13 @@ class HomeScreenController extends GetxController {
     }
   }
 
+
+  void logoutBtnClicked() {
+
+  }
+
+
+
   void fishInformationBtnClicked() {
     Get.to(()=> FishDataInputScreen());
   }
