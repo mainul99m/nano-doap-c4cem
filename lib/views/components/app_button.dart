@@ -5,10 +5,12 @@ import '../stylesheets/text_stylesheets.dart';
 
 class AppButton extends StatelessWidget {
   final VoidCallback? onPressed;
+  final isLoading;
   final String title;
   const AppButton({
     this.onPressed,
     required this.title,
+    this.isLoading = false,
     super.key
   });
 
@@ -22,12 +24,14 @@ class AppButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4)
             )
         ),
-        onPressed: onPressed,
+        onPressed: isLoading ? null : onPressed,
         child: Container(
             width: 160,
             height: 44,
             child: Center(
-                child: Text(
+                child: isLoading ? CircularProgressIndicator(
+                  color: AppColors.primaryColor,
+                ):Text(
                   title,
                   style: TextStyleSheets.button,
                 ))

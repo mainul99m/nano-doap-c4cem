@@ -1,12 +1,15 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:nano_doap_c4cem/main.dart';
 import 'package:nano_doap_c4cem/services/location_services.dart';
+import 'package:nano_doap_c4cem/utils/shared_prefs_constants.dart';
 import 'package:nano_doap_c4cem/views/environment_data_input_screen.dart';
 import 'package:nano_doap_c4cem/views/fish_data_input_screen.dart';
 import 'package:nano_doap_c4cem/views/plastic_data_input_screen.dart';
 import 'package:nano_doap_c4cem/views/resource_data_input_screen.dart';
 import 'package:nano_doap_c4cem/views/weather_map_download_screen.dart';
 
+import '../views/login_screen.dart';
 import '../views/plankton_data_input_screen.dart';
 
 class HomeScreenController extends GetxController {
@@ -20,6 +23,7 @@ class HomeScreenController extends GetxController {
   void onInit() {
     super.onInit();
     isLocationServiceEnabled.value = false;
+    print(sharedPrefs.getString(SharedPrefsConstants.ACCESS_TOKEN));
     requestLocationService();
   }
 
@@ -31,8 +35,10 @@ class HomeScreenController extends GetxController {
   }
 
 
-  void logoutBtnClicked() {
+  void logoutBtnClicked() async {
+    await sharedPrefs.remove(SharedPrefsConstants.ACCESS_TOKEN);
 
+    Get.offAll(()=>LoginScreen());
   }
 
 

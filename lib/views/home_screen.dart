@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   ListTile(
                     title: const Text('Logout'),
-                    onTap: () {},
+                    onTap: controller.logoutBtnClicked,
                   )
                 ],
               ),

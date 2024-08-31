@@ -24,6 +24,7 @@ class LoginScreen extends StatelessWidget {
               Image.asset('assets/common/logo_t.png', fit: BoxFit.contain, height: 120, width: 120),
               Spacing.height32,
               TextFormField(
+                controller: controller.emailController,
                 decoration: InputDecoration(
                   hintText: "Username",
                   prefixIcon: Icon(Icons.person),
@@ -37,6 +38,7 @@ class LoginScreen extends StatelessWidget {
               ),
               Spacing.height16,
               TextFormField(
+                controller: controller.passwordController,
                 decoration: InputDecoration(
                   hintText: "Password",
                   prefixIcon: Icon(Icons.lock),
@@ -50,12 +52,11 @@ class LoginScreen extends StatelessWidget {
                 obscureText: true,
               ),
               Spacing.height16,
-              AppButton(
+              Obx(()=>AppButton(
                 title: "Login",
-                onPressed: () {
-
-                },
-              ),
+                isLoading: controller.isBusy.value,
+                onPressed: controller.loginBtnClicked,
+              )),
               Spacing.height8,
               InkWell(
                 onTap: (){},
@@ -66,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
