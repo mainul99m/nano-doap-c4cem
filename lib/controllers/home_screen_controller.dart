@@ -2,6 +2,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:nano_doap_c4cem/main.dart';
+import 'package:nano_doap_c4cem/models/environment_upload_model.dart';
 import 'package:nano_doap_c4cem/models/plankton_upload_model.dart';
 import 'package:nano_doap_c4cem/models/plastic_upload_model.dart';
 import 'package:nano_doap_c4cem/models/resource_upload_model.dart';
@@ -81,6 +82,12 @@ class HomeScreenController extends GetxController {
       var isDone = await syncPlasticData();
       if(isDone){
         print("Plastic data sync done");
+      }
+    }
+    if(environmentCount.value > 0){
+      var isDone = await syncEnvironmentData();
+      if(isDone){
+        print("Environment data sync done");
       }
     }
 
@@ -170,6 +177,27 @@ class HomeScreenController extends GetxController {
     CustomMessage.showSuccessMessage(
         title: "Success",
         message: "Plastic data sync done"
+    );
+    return true;
+  }
+
+  Future<bool> syncEnvironmentData() async{
+    while(environmentCount.value > 0){
+      print("syncing plastic data");
+      var environmentDataString = _environmentBox.getAt(0);
+      var environment = environmentUploadModelFromJson(environmentDataString);
+      var response = await RemoteService.updateEnvironmentData(environment: environment);
+      if(response){
+        _environmentBox.deleteAt(0);
+        environmentCount.value = _environmentBox.length;
+      } else{
+        print("Environment data sync failed");
+        return false;
+      }
+    }
+    CustomMessage.showSuccessMessage(
+        title: "Success",
+        message: "Environment data sync done"
     );
     return true;
   }
