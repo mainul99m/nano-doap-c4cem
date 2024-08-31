@@ -23,6 +23,12 @@ class PlanktonDataInputScreenController extends GetxController{
   var isBusy = false.obs;
 
   @override
+  void onInit() {
+    super.onInit();
+    requestLocation();
+  }
+
+  @override
   void onClose() {
     numberOfPlanktonController.dispose();
     super.onClose();
@@ -31,6 +37,7 @@ class PlanktonDataInputScreenController extends GetxController{
   void requestLocation() async {
     currentLocation = await Geolocator.getCurrentPosition();
     if(currentLocation != null){
+      print("coordinate updated");
       coordinates = [currentLocation!.longitude, currentLocation!.latitude];
     }
   }

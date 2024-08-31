@@ -2,6 +2,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:nano_doap_c4cem/main.dart';
+import 'package:nano_doap_c4cem/models/plankton_upload_model.dart';
 import 'package:nano_doap_c4cem/services/image_service.dart';
 import 'package:nano_doap_c4cem/services/location_services.dart';
 import 'package:nano_doap_c4cem/services/remote_service.dart';
@@ -62,6 +63,12 @@ class HomeScreenController extends GetxController {
         print("Fish data sync done");
       }
     }
+    if(planktonCount.value > 0){
+      var isDone = await syncPlanktonData();
+      if(isDone){
+        print("Plankton data sync done");
+      }
+    }
 
   }
 
@@ -83,6 +90,28 @@ class HomeScreenController extends GetxController {
     CustomMessage.showSuccessMessage(
         title: "Success",
         message: "Fish data sync done"
+    );
+    return true;
+  }
+
+  Future<bool> syncPlanktonData() async{
+    while(planktonCount.value > 0){
+      print("syncing plankton data");
+      var planktonDataString = _planktonBox.getAt(0);
+      var planktonData = planktonUploadModelFromJson(planktonDataString);
+      var response = await RemoteService.updatePlanktonData(plankton: planktonData);
+      if(response){
+        ImageService.deleteImage(planktonData.imageUrl);
+        _planktonBox.deleteAt(0);
+        planktonCount.value = _planktonBox.length;
+      } else{
+        print("Plankton data sync failed");
+        return false;
+      }
+    }
+    CustomMessage.showSuccessMessage(
+        title: "Success",
+        message: "Plankton data sync done"
     );
     return true;
   }
