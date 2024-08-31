@@ -13,10 +13,11 @@ class CustomMessage{
   }
   static void showSuccessMessage({required String title, required String message}){
     Get.snackbar(
-        title,
-        message,
-        backgroundColor: AppColors.successColor,
-        colorText: Colors.white
+      title,
+      message,
+      backgroundColor: AppColors.successColor,
+      colorText: AppColors.primaryColor,
+      snackPosition: SnackPosition.BOTTOM
     );
   }
 }

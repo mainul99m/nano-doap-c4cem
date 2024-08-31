@@ -106,11 +106,12 @@ class HomeScreen extends StatelessWidget {
                     onTap: controller.fishInformationBtnClicked,
                     count: controller.fishCount.value,
                   )),
-                  MenuIconButton(
+                  Obx(()=>MenuIconButton(
                     title: 'Information related to environment'.tr,
                     iconPath: 'assets/icons/ic_temperature.png',
                     onTap: controller.environmentBtnClicked,
-                  ),
+                    count: controller.environmentCount.value,
+                  )),
                 ],
               ),
               const SizedBox(height: 20,),
@@ -124,11 +125,12 @@ class HomeScreen extends StatelessWidget {
                     onTap: controller.planktonBtnClicked,
                     count: controller.planktonCount.value,
                   )),
-                  MenuIconButton(
+                  Obx(()=>MenuIconButton(
                     title: 'Information related to plastic'.tr,
                     iconPath: 'assets/icons/ic_water-pollution.png',
                     onTap: controller.plasticBtnClicked,
-                  ),
+                    count: controller.plasticCount.value,
+                  )),
                 ],
               ),
               const SizedBox(height: 20,),
@@ -136,11 +138,12 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MenuIconButton(
+                  Obx(()=>MenuIconButton(
                     title: 'Information related to resource'.tr,
                     iconPath: 'assets/icons/ic_resource.png',
                     onTap: controller.resourcesBtnClicked,
-                  ),
+                    count: controller.resourceCount.value,
+                  )),
                 ],
               ),
               const SizedBox(height: 26,),

@@ -42,7 +42,7 @@ class PlanktonDataInputScreen extends StatelessWidget {
               Spacing.height32,
               Obx(()=>AppButton(
                 title: 'Submit',
-                onPressed: controller.imagePath.isNotEmpty ? (){} : null,
+                onPressed: controller.imagePath.isNotEmpty ? controller.submitBtnPressed : null,
               ))
             ],
           ),

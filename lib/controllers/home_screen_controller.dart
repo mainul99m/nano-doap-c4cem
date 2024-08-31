@@ -87,6 +87,8 @@ class HomeScreenController extends GetxController {
     return true;
   }
 
+
+
   void requestLocationService() async{
     var currentLocation = await LocationService.getCurrentLocation();
     if(currentLocation != null){
@@ -107,20 +109,25 @@ class HomeScreenController extends GetxController {
     await Get.to(()=> FishDataInputScreen());
     updateRemainingDataCount();
   }
-  void environmentBtnClicked() {
-    Get.to(()=> EnvironmentDataInputScreen());
+  void environmentBtnClicked() async{
+    await Get.to(()=> EnvironmentDataInputScreen());
+    updateRemainingDataCount();
   }
-  void planktonBtnClicked() {
-    Get.to(()=> PlanktonDataInputScreen());
+  void planktonBtnClicked() async{
+    await Get.to(()=> PlanktonDataInputScreen());
+    updateRemainingDataCount();
   }
-  void plasticBtnClicked() {
-    Get.to(()=> PlasticDataInputScreen());
+  void plasticBtnClicked() async{
+    await Get.to(()=> PlasticDataInputScreen());
+    updateRemainingDataCount();
   }
-  void resourcesBtnClicked() {
-    Get.to(()=>ResourceDataInputScreen());
+  void resourcesBtnClicked() async{
+    await Get.to(()=>ResourceDataInputScreen());
+    updateRemainingDataCount();
   }
-  void weatherBtnClicked() {
-    Get.to(()=>WeatherMapDownloadScreen());
+  void weatherBtnClicked() async{
+    await Get.to(()=>WeatherMapDownloadScreen());
+    updateRemainingDataCount();
   }
   void seaStateBtnClicked() {
 
