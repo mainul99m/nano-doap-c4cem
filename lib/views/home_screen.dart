@@ -100,11 +100,12 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MenuIconButton(
+                  Obx(()=>MenuIconButton(
                     title: 'Information related to fish'.tr,
                     iconPath: 'assets/icons/ic_fish.png',
                     onTap: controller.fishInformationBtnClicked,
-                  ),
+                    count: controller.fishCount.value,
+                  )),
                   MenuIconButton(
                     title: 'Information related to environment'.tr,
                     iconPath: 'assets/icons/ic_temperature.png',
@@ -117,11 +118,12 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MenuIconButton(
+                  Obx(()=>MenuIconButton(
                     title: 'Information related to plankton'.tr,
                     iconPath: 'assets/icons/ic_plankton.png',
                     onTap: controller.planktonBtnClicked,
-                  ),
+                    count: controller.planktonCount.value,
+                  )),
                   MenuIconButton(
                     title: 'Information related to plastic'.tr,
                     iconPath: 'assets/icons/ic_water-pollution.png',

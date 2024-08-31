@@ -1,5 +1,3 @@
-
-
 import '../models/fish_model.dart';
 
 final List<Fish> app_fish_list = [

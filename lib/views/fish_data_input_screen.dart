@@ -103,7 +103,8 @@ class FishDataInputScreen extends StatelessWidget {
               const SizedBox(height: 16,),
               Obx(()=>AppButton(
                 title: 'Submit',
-                onPressed: controller.imagePath.isNotEmpty?(){}:null,
+                isLoading: controller.isBusy.value,
+                onPressed: controller.imagePath.isNotEmpty ? controller.submitBtnPressed : null,
               ))
             ],
           ),
