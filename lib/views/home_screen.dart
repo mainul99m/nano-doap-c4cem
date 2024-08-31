@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nano_doap_c4cem/controllers/home_screen_controller.dart';
+import 'package:nano_doap_c4cem/main.dart';
 import 'package:nano_doap_c4cem/utils/app_colors.dart';
+import 'package:nano_doap_c4cem/utils/shared_prefs_constants.dart';
+import 'package:nano_doap_c4cem/views/components/app_button.dart';
+import 'package:nano_doap_c4cem/views/components/app_drawer.dart';
 import 'package:nano_doap_c4cem/views/components/custom_appbar.dart';
 import 'package:nano_doap_c4cem/views/components/menu_icon_button.dart';
 import 'package:nano_doap_c4cem/views/components/section_header.dart';
 import 'package:nano_doap_c4cem/views/components/warning_widget.dart';
+import 'package:nano_doap_c4cem/views/stylesheets/spacing_style.dart';
 
 class HomeScreen extends StatelessWidget {
   final HomeScreenController controller = Get.put(HomeScreenController());
@@ -45,38 +50,10 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: AppColors.backgroundColor,
-      drawer: Drawer(
-        backgroundColor: AppColors.secondaryBrightColor,
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  ListTile(
-                    title: const Text('Item 1'),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    title: const  Text('Item 2'),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    title: const Text('Logout'),
-                    onTap: controller.logoutBtnClicked,
-                  )
-                ],
-              ),
-            ),
-
-            Positioned(
-              bottom: 0,
-              right: 0,
-              left: 0,
-              child: Image.asset('assets/common/logo_nano_doap_white.jpg', fit: BoxFit.contain),
-            )
-          ],
-        ),
+      drawer: AppDrawer(
+        username: sharedPrefs.getString(SharedPrefsConstants.USER_NAME) ?? 'NANO-DOAP C4CEM'.tr,
+        appVersion: '1.0.0',
+        onLogout: controller.logoutBtnClicked,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -164,11 +141,11 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 60,),
-              ElevatedButton(
-                  onPressed: controller.syncData,
-                  child: Text("Sync Data"
-                  ))
+              Spacing.height16,
+              AppButton(
+                title: "Sync Data"
+              ),
+              Spacing.height32
             ],
           ),
         ),
