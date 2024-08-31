@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:nano_doap_c4cem/main.dart';
 import 'package:nano_doap_c4cem/models/plankton_upload_model.dart';
+import 'package:nano_doap_c4cem/models/resource_upload_model.dart';
 import 'package:nano_doap_c4cem/services/image_service.dart';
 import 'package:nano_doap_c4cem/services/location_services.dart';
 import 'package:nano_doap_c4cem/services/remote_service.dart';
@@ -69,6 +70,12 @@ class HomeScreenController extends GetxController {
         print("Plankton data sync done");
       }
     }
+    if(resourceCount.value > 0){
+      var isDone = await syncResourceData();
+      if(isDone){
+        print("Resource data sync done");
+      }
+    }
 
   }
 
@@ -112,6 +119,28 @@ class HomeScreenController extends GetxController {
     CustomMessage.showSuccessMessage(
         title: "Success",
         message: "Plankton data sync done"
+    );
+    return true;
+  }
+
+  Future<bool> syncResourceData() async{
+    while(resourceCount.value > 0){
+      print("syncing resource data");
+      var resourceDataString = _resourceBox.getAt(0);
+      var resourceData = resourceUploadModelFromJson(resourceDataString);
+      var response = await RemoteService.updateResourceData(resource: resourceData);
+      if(response){
+        ImageService.deleteImage(resourceData.imageUrl);
+        _resourceBox.deleteAt(0);
+        resourceCount.value = _resourceBox.length;
+      } else{
+        print("Resource data sync failed");
+        return false;
+      }
+    }
+    CustomMessage.showSuccessMessage(
+        title: "Success",
+        message: "Resource data sync done"
     );
     return true;
   }

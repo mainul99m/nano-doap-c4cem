@@ -35,11 +35,12 @@ class ResourceDataInputScreen extends StatelessWidget {
               AppTextField(
                 leadingIcon: "assets/icons/ic_resource.png",
                 labelText: "Resource type",
+                controller: controller.resourceTypeController,
               ),
               Spacing.height16,
               Obx(()=>AppButton(
                 title: "Submit",
-                onPressed: controller.imagePath.isNotEmpty ? (){} : null,
+                onPressed: controller.imagePath.isNotEmpty ? controller.submitBtnPressed : null,
               ))
             ],
           ),
