@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:nano_doap_c4cem/main.dart';
 import 'package:nano_doap_c4cem/models/plankton_upload_model.dart';
+import 'package:nano_doap_c4cem/models/plastic_upload_model.dart';
 import 'package:nano_doap_c4cem/models/resource_upload_model.dart';
 import 'package:nano_doap_c4cem/services/image_service.dart';
 import 'package:nano_doap_c4cem/services/location_services.dart';
@@ -76,6 +77,12 @@ class HomeScreenController extends GetxController {
         print("Resource data sync done");
       }
     }
+    if(plasticCount.value > 0){
+      var isDone = await syncPlasticData();
+      if(isDone){
+        print("Plastic data sync done");
+      }
+    }
 
   }
 
@@ -141,6 +148,28 @@ class HomeScreenController extends GetxController {
     CustomMessage.showSuccessMessage(
         title: "Success",
         message: "Resource data sync done"
+    );
+    return true;
+  }
+
+  Future<bool> syncPlasticData() async{
+    while(plasticCount.value > 0){
+      print("syncing plastic data");
+      var plasticDataString = _plasticBox.getAt(0);
+      var plasticData = plasticUploadModelFromJson(plasticDataString);
+      var response = await RemoteService.updatePlasticData(plastic: plasticData);
+      if(response){
+        ImageService.deleteImage(plasticData.imageUrl);
+        _plasticBox.deleteAt(0);
+        plasticCount.value = _plasticBox.length;
+      } else{
+        print("Plastic data sync failed");
+        return false;
+      }
+    }
+    CustomMessage.showSuccessMessage(
+        title: "Success",
+        message: "Plastic data sync done"
     );
     return true;
   }

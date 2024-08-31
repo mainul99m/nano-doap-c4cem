@@ -16,7 +16,7 @@ class CustomMessage{
       title,
       message,
       backgroundColor: AppColors.successColor,
-      colorText: AppColors.primaryColor,
+      colorText: AppColors.backgroundColor,
       snackPosition: SnackPosition.BOTTOM
     );
   }
