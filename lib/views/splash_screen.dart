@@ -27,7 +27,7 @@ class SplashScreen extends StatelessWidget {
             left: 0,
             right: 0,
             child: Text(
-              'version 2.0',
+              'version 1.0.0',
               style: GoogleFonts.fredoka(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

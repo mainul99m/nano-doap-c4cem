@@ -124,6 +124,10 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 26,),
+
+              /*
+
+
               SectionHeader(title: 'Information for you'.tr),
               const SizedBox(height: 20,),
               Row(
@@ -142,8 +146,11 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               Spacing.height16,
+
+*/
               AppButton(
-                title: "Sync Data"
+                title: "Sync Data",
+                onPressed: controller.syncData,
               ),
               Spacing.height32
             ],
