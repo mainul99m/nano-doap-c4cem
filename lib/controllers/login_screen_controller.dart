@@ -44,6 +44,7 @@ class LoginScreenController extends GetxController{
         sharedPrefs.setString(SharedPrefsConstants.USER_NAME, loginData.user!.name!);
         sharedPrefs.setString(SharedPrefsConstants.USER_EMAIL, loginData.user!.email!);
         sharedPrefs.setString(SharedPrefsConstants.USER_PHONE, loginData.user!.phone!);
+        sharedPrefs.setString(SharedPrefsConstants.USER_COUNTRY, loginData.user!.country!);
 
         Get.offAll(()=>HomeScreen());
       }else{

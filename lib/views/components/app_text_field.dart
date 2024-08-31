@@ -65,6 +65,8 @@ class AppTextField extends StatelessWidget {
                   labelText: labelText,
                   hintText: hintText,
                 ),
+                controller: controller,
+                keyboardType: keyboardType,
               ),
             )
           ]

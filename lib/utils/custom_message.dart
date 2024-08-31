@@ -11,4 +11,12 @@ class CustomMessage{
         colorText: Colors.white
     );
   }
+  static void showSuccessMessage({required String title, required String message}){
+    Get.snackbar(
+        title,
+        message,
+        backgroundColor: AppColors.successColor,
+        colorText: Colors.white
+    );
+  }
 }

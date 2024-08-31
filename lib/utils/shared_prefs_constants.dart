@@ -7,6 +7,7 @@ class SharedPrefsConstants {
   static const String USER_NAME = 'USER_NAME';
   static const String USER_EMAIL = 'USER_EMAIL';
   static const String USER_PHONE = 'USER_PHONE';
+  static const String USER_COUNTRY = 'USER_COUNTRY';
 
   // Hive
   static const String FISH_BOX = 'FISH_BOX';

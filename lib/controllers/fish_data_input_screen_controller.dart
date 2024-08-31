@@ -1,10 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nano_doap_c4cem/main.dart';
+import 'package:nano_doap_c4cem/models/fish_upload_model.dart';
 import 'package:nano_doap_c4cem/services/image_service.dart';
 import 'package:nano_doap_c4cem/utils/custom_message.dart';
 import 'package:nano_doap_c4cem/utils/shared_prefs_constants.dart';
@@ -28,6 +29,8 @@ class FishDataInputScreenController extends GetxController {
   // Hive fish box
   final _fishBox = Hive.box(SharedPrefsConstants.FISH_BOX);
 
+  var coordinates = [0.0, 0.0];
+
   @override
   void onInit() {
     super.onInit();
@@ -44,6 +47,9 @@ class FishDataInputScreenController extends GetxController {
 
   void requestLocation() async {
     currentLocation = await Geolocator.getCurrentPosition();
+    if(currentLocation != null){
+      coordinates = [currentLocation!.longitude, currentLocation!.latitude];
+    }
   }
 
   void selectFishTFPressed() async{
@@ -82,17 +88,24 @@ class FishDataInputScreenController extends GetxController {
       return;
     }
     String savedLocation = await ImageService.saveImage(File(imagePath.value));
+    final String? country = sharedPrefs.getString(SharedPrefsConstants.USER_COUNTRY);
+    final String updatedBy = sharedPrefs.getString(SharedPrefsConstants.USER_NAME) ?? "N/A";
 
-    final fishData = {
-      'fish': selectedFish.value,
-      'weight': weightController.text,
-      'length': lengthController.text,
-      'fishingTime': fishingTimeController.text,
-      'location': savedLocation,
-      'latitude': currentLocation!.latitude,
-      'longitude': currentLocation!.longitude
-    };
-    await _fishBox.add(fishData.toString());
+    print(lengthController.text);
+    print(weightController.text);
+
+    final FishUploadModel fishData = FishUploadModel(
+      name: selectedFish.value,
+      imageUrl: savedLocation,
+      length: double.parse(lengthController.text) ?? 0.0,
+      weight: double.parse(weightController.text) ?? 0.0,
+      country: country ?? "N/A",
+      updatedBy: updatedBy,
+      coordinates: coordinates,
+      createdAt: DateTime.now()
+    );
+    print(fishUploadModelToJson(fishData));
+    await _fishBox.add(fishUploadModelToJson(fishData));
     print(_fishBox.length);
     isBusy.value = false;
     Get.back();

@@ -162,6 +162,10 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 60,),
+              ElevatedButton(
+                  onPressed: controller.syncData,
+                  child: Text("Sync Data"
+                  ))
             ],
           ),
         ),

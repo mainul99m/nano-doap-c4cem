@@ -20,6 +20,7 @@ class FishListController extends GetxController {
     searchResultFishList.value = all_fish;
   }
 
+
   void searchFish(String query) {
     searchResultFishList.value = all_fish.where((fish) => fish.toLowerCase().contains(query.toLowerCase())).toList();
     searchString.value = query;
